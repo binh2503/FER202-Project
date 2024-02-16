@@ -44,6 +44,12 @@
       "email": "binh111@gmail.com",
       "password": "123456y",
       "doctorCode": "J1234"
+    },
+    {
+      "email": "tungta@gmail.com",
+      "password": "Tatung123",
+      "doctorCode": "T123",
+      "id": "2DcoRM-"
     }
   ]
 }
