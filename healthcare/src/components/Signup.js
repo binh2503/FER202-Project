@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import { UilLock, UilEnvelopeAlt, UilMedicalSquareFull } from "@iconscout/react-unicons";
-import { Link } from "react-router-dom";
+import {
+  UilLock,
+  UilEnvelopeAlt,
+  UilMedicalSquareFull,
+} from "@iconscout/react-unicons";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [doctorCode, setDoctorCode] = useState("");
+  const [code, setCode] = useState("");
   const [error, setError] = useState("");
 
   const handleSignup = async () => {
     let hasError = false;
   
-    // Kiểm tra xem các trường thông tin đã được điền đầy đủ chưa
-    if (!email || !password || !doctorCode) {
-      setError("All fields are required.");
+    if (!email || !password) {
+      setError("Email and password are required.");
       hasError = true;
     }
   
     if (!hasError) {
-      // Kiểm tra định dạng email
       if (!email.endsWith("@gmail.com")) {
         setError("Email must end with @gmail.com");
         hasError = true;
       }
   
-      // Kiểm tra định dạng mật khẩu
       if (
         !hasError &&
         (password.length < 6 ||
@@ -36,66 +36,79 @@ export default function Signup() {
         );
         hasError = true;
       }
-  
-      // Kiểm tra định dạng mã bác sĩ
-      if (!hasError && !/^[A-Z]\w{0,4}$/i.test(doctorCode)) {
-        setError("Doctor Code must start with a capital letter and be up to 5 characters long.");
-        hasError = true;
-      }
     }
   
     if (!hasError) {
       try {
-        // Lấy dữ liệu từ máy chủ
-        const response = await fetch("http://localhost:9999/infor");
-        if (response.ok) {
-          const data = await response.json();
-          // Kiểm tra dữ liệu từ máy chủ
-          if (data.some(entry => entry.email === email)) {
-            setError("Email already exists. Please choose another email.");
-            hasError = true;
+        let role = "user";
+  
+        if (code) {
+          const response = await fetch("http://localhost:9999/doctorCode");
+          if (response.ok) {
+            const data = await response.json();
+            if (data.some((entry) => entry.code === code)) {
+              role = "doctor";
+  
+              await fetch(`http://localhost:9999/doctorCode/${data.find(entry => entry.code === code).id}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+            } else {
+              const adminResponse = await fetch("http://localhost:9999/adminCode");
+              if (adminResponse.ok) {
+                const adminData = await adminResponse.json();
+                if (adminData.some((entry) => entry.admin === code)) {
+                  role = "admin";
+  
+                  await fetch(`http://localhost:9999/adminCode/${adminData.find(entry => entry.admin === code).id}`, {
+                    method: "DELETE",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
+                } else {
+                  setError("Invalid code.");
+                  hasError = true;
+                }
+              } else {
+                setError("Error checking admin code. Please try again later.");
+                return;
+              }
+            }
+          } else {
+            setError("Error checking code. Please try again later.");
+            return;
           }
-          if (data.some(entry => entry.doctorCode === doctorCode)) {
-            setError("Doctor Code already exists. Please choose another code.");
-            hasError = true;
-          }
-        } else {
-          setError("Error checking existing data. Please try again later.");
-          return;
         }
-      } catch (error) {
-        setError("An error occurred while processing your request.");
-        return;
-      }
-    }
   
-    if (!hasError) {
-      try {
-        const response = await fetch("http://localhost:9999/infor", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email,
-            password,
-            doctorCode,
-          }),
-        });
+        if (!hasError) {
+          const response = await fetch("http://localhost:9999/infor", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password,
+              code,
+              role,
+            }),
+          });
   
-        if (response.ok) {
-          console.log("Signup successful!");
-          // Chuyển hướng URL sau khi đăng ký thành công
-          window.location.href = "/login";
-        } else {
-          setError("Signup failed. Please try again later.");
+          if (response.ok) {
+            console.log("Signup successful!");
+            window.location.href = "/login";
+          } else {
+            setError("Signup failed. Please try again later.");
+          }
         }
       } catch (error) {
         setError("An error occurred while processing your request.");
       }
     }
   };
-  
   
 
   return (
@@ -146,7 +159,9 @@ export default function Signup() {
         </div>
         <div className="w-full h-auto flex justify-center mt-[15px]">
           <div className="w-3/4 h-[70px] bg-[#F1F7FA] rounded-[10px]">
-            <p className="ml-[10px] mt-[5px] font-mono">Doctor Code:</p>
+            <p className="ml-[10px] mt-[5px] font-mono">
+              Doctor Code or Admin Code:
+            </p>
             <div className="flex items-center mt-[8px]">
               <div className="w-[20px] h-[20px] ml-[10px]">
                 <UilMedicalSquareFull size={20} />
@@ -155,8 +170,8 @@ export default function Signup() {
                 type="text"
                 placeholder="optional"
                 className="pl-[5px] pb-[4px] font-mono  font-[10px] w-4/5 h-full outline-none rounded-[10px] ml-[10px]"
-                value={doctorCode}
-                onChange={(e) => setDoctorCode(e.target.value)}
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
               />
             </div>
           </div>

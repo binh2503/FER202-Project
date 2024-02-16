@@ -1,49 +1,90 @@
 {
   "infor": [
     {
-      "id": "1",
-      "email": "binhdo2503@gmail.com",
-      "password": "123456yyy"
+      "id": "cb2c",
+      "email": "binhbop123@gmail.com",
+      "password": "123456yyy",
+      "doctorCode": "",
+      "role": "user"
     },
     {
-      "id": "2",
-      "email": "binhdeptrai@gmail.com",
-      "password": "123456yyy"
+      "id": "516a",
+      "email": "binhboopp@gmail.com",
+      "password": "123456yyy",
+      "doctorCode": "DGB123",
+      "role": "doctor"
     },
+    {
+      "id": "63c2",
+      "email": "binhvvv@gmail.com",
+      "password": "123456yyy",
+      "doctorCode": "DGB123",
+      "role": "doctor"
+    },
+    {
+      "id": "480a",
+      "email": "binhyy@gmail.com",
+      "password": "123456yy",
+      "code": "",
+      "role": "user"
+    },
+    {
+      "id": "4190",
+      "email": "binhh@gmail.com",
+      "password": "123456yyy",
+      "code": "DGB123",
+      "role": "doctor"
+    },
+    {
+      "id": "3be7",
+      "email": "binhvvv@gmail.com",
+      "password": "123456yyy",
+      "code": "sirbob123",
+      "role": "admin"
+    },
+    {
+      "id": "d627",
+      "email": "binhdeptrai111@gmail.com",
+      "password": "123456yy",
+      "code": "sirbob123",
+      "role": "admin"
+    },
+    {
+      "id": "616e",
+      "email": "lamon@gmail.com",
+      "password": "123456yyy",
+      "code": "DGB123",
+      "role": "doctor"
+    },
+    {
+      "id": "7ab7",
+      "email": "thaibinh@gmail.com",
+      "password": "123456yyy",
+      "code": "DGB234",
+      "role": "doctor"
+    },
+    {
+      "id": "0792",
+      "email": "binhgiavi@gmail.com",
+      "password": "123456yyy",
+      "code": "sirbob123",
+      "role": "admin"
+    }
+  ],
+  "doctorCode": [
     {
       "id": "3",
-      "email": "binhdeptrai123@gmail.com",
-      "password": "123456yyy"
+      "code": "DGB345"
     },
     {
-      "id": "3fcd",
-      "email": "binhdo@gmail.com",
-      "password": "123456y",
-      "doctorCode": "B1234"
-    },
+      "id": "4",
+      "code": "DGB456"
+    }
+  ],
+  "adminCode": [
     {
-      "id": "4d9f",
-      "email": "binhdepzai@gmail.com",
-      "password": "123456y",
-      "doctorCode": "H1234"
-    },
-    {
-      "id": "7a29",
-      "email": "binh@gmail.com",
-      "password": "123456y",
-      "doctorCode": "H1234"
-    },
-    {
-      "id": "719b",
-      "email": "binhdo@gmail.com",
-      "password": "123456y",
-      "doctorCode": "H1234"
-    },
-    {
-      "id": "3e7b",
-      "email": "binh111@gmail.com",
-      "password": "123456y",
-      "doctorCode": "J1234"
+      "id": "2",
+      "admin": "binhdo"
     }
   ]
 }
