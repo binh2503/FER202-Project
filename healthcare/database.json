@@ -69,22 +69,27 @@
       "password": "123456yyy",
       "code": "sirbob123",
       "role": "admin"
+    },
+    {
+      "email": "tungtk@gmail.com",
+      "password": "Tatung123",
+      "code": "DGB456",
+      "role": "doctor",
+      "id": "UI6ZGYN"
+    },
+    {
+      "email": "tungtk1@gmail.com",
+      "password": "Tatung123",
+      "code": "binhdo",
+      "role": "admin",
+      "id": "1O0UvGj"
     }
   ],
   "doctorCode": [
     {
       "id": "3",
       "code": "DGB345"
-    },
-    {
-      "id": "4",
-      "code": "DGB456"
     }
   ],
-  "adminCode": [
-    {
-      "id": "2",
-      "admin": "binhdo"
-    }
-  ]
+  "adminCode": []
 }
