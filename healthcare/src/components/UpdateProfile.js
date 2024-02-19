@@ -1,4 +1,91 @@
+import { useState, useEffect } from "react";
+
 export default function UpdateProfile() {
+    const [userData, setUserData] = useState({
+        id: "",
+        email: "",
+        password: "",
+        doctorCode: "",
+        role: "",
+        fullName: "",
+        dateOfBirth: "",
+        phone: "",
+        address: ""
+    });
+
+    useEffect(() => {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            fetch(`http://localhost:9999/infor/${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        setUserData(prevUserData => ({
+                            ...prevUserData,
+                            id: data.id,
+                            email: data.email,
+                            password: data.password,
+                            doctorCode: data.doctorCode,
+                            role: data.role,
+                            fullName: data.fullName || "",
+                            dateOfBirth: data.dateOfBirth || "",
+                            phone: data.phone || "",
+                            address: data.address || ""
+                        }));
+                    }
+                })
+                .catch(error => console.error("Error fetching user data:", error));
+        }
+    }, []);
+
+    const handleUpdate = async () => {
+        try {
+            const response = await fetch(`http://localhost:9999/infor/${userData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                console.log("Update successful!");
+            } else {
+                console.error("Update failed!");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+    const handleFullNameChange = (e) => {
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            fullName: e.target.value
+        }));
+    };
+
+    const handleDateOfBirthChange = (e) => {
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            dateOfBirth: e.target.value
+        }));
+    };
+
+    const handlePhoneChange = (e) => {
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            phone: e.target.value
+        }));
+    };
+
+    const handleAddressChange = (e) => {
+        setUserData(prevUserData => ({
+            ...prevUserData,
+            address: e.target.value
+        }));
+    };
+
     return (
         <div className="w-screen h-auto flex justify-center mt-[100px]">
             <div className="w-2/5 h-auto">
@@ -8,38 +95,36 @@ export default function UpdateProfile() {
                     <div className="w-full flex mt-[10px]">
                         <div className="w-1/2">
                             <div className="w-3/4">
-                                <label for="name" className="font-mono text-black text-[20px] font-bold">Full name</label>
-                                <input placeholder="Nguyen Van A" type="text" id="name" name="name" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " />
+                                <label htmlFor="fullName" className="font-mono text-black text-[20px] font-bold">Full name</label>
+                                <input placeholder="Nguyen Van A" type="text" id="fullName" name="fullName" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " value={userData.fullName} onChange={handleFullNameChange} />
                             </div>
                         </div>
                         <div className="w-1/2">
                             <div className="w-3/4">
-                                <label for="name" className="font-mono text-black text-[20px] font-bold">Date of birth</label>
-                                <input type="date" id="name" name="name" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono" />
+                                <label htmlFor="dateOfBirth" className="font-mono text-black text-[20px] font-bold">Date of birth</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono" value={userData.dateOfBirth} onChange={handleDateOfBirthChange} />
                             </div>
                         </div>
                     </div>
                     <div className="w-full flex mt-[10px]">
                         <div className="w-1/2">
                             <div className="w-3/4">
-                                <label for="name" className="font-mono text-black text-[20px] font-bold">Phone number</label>
-                                <input placeholder="0xxxxxxxxx" type="text" id="name" name="name" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " />
+                                <label htmlFor="phone" className="font-mono text-black text-[20px] font-bold">Phone number</label>
+                                <input placeholder="0xxxxxxxxx" type="text" id="phone" name="phone" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " value={userData.phone} onChange={handlePhoneChange} />
                             </div>
                         </div>
                         <div className="w-1/2">
                             <div className="w-3/4">
-                                <label for="name" className="font-mono text-black text-[20px] font-bold">Address</label>
-                                <input type="text" id="name" name="name" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono" />
+                                <label htmlFor="address" className="font-mono text-black text-[20px] font-bold">Address</label>
+                                <input type="text" id="address" name="address" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono" value={userData.address} onChange={handleAddressChange} />
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="w-full flex justify-center">
-                    <button className="w-1/4 h-[40px] bg-[#109AE5] rounded-[5px] mt-[20px] font-mono text-white text-[20px] font-bold">Update</button>
+                    <button onClick={handleUpdate} className="w-1/4 h-[40px] bg-[#109AE5] rounded-[5px] mt-[20px] font-mono text-white text-[20px] font-bold">Update</button>
                 </div>
-                <p>testconfig</p>
             </div>
         </div>
-        
     );
 }
