@@ -37,7 +37,9 @@ export default function UpdateProfile() {
                 <div className="w-full flex justify-center">
                     <button className="w-1/4 h-[40px] bg-[#109AE5] rounded-[5px] mt-[20px] font-mono text-white text-[20px] font-bold">Update</button>
                 </div>
+                <p>testconfig</p>
             </div>
         </div>
+        
     );
 }
