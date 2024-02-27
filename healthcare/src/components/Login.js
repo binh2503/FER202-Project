@@ -8,7 +8,7 @@ export default function Login() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleLogin = async () => {
-    setSubmitted(true); // Thêm dòng này để cập nhật trạng thái submitted
+    setSubmitted(true);
   let hasError = false;
 
     if (!email || !password) {
@@ -36,11 +36,9 @@ export default function Login() {
     }
 
     if (!hasError && submitted) {
-      // Lấy dữ liệu từ API để kiểm tra thông tin người dùng
       const response = await fetch("http://localhost:9999/infor");
       const data = await response.json();
       console.log(data);
-      // So sánh thông tin người dùng với dữ liệu từ file database.json
       const user = data.find(
         (userInfo) =>
           userInfo.email === email && userInfo.password.toString() === password
@@ -48,7 +46,7 @@ export default function Login() {
 
       if (user) {
         console.log("Login successful!");
-        // Thực hiện các hành động sau khi đăng nhập thành công
+        window.location.href = "/homepage";
       } else {
         setError("Invalid email or password");
       }

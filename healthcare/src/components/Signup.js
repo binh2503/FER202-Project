@@ -13,18 +13,18 @@ export default function Signup() {
 
   const handleSignup = async () => {
     let hasError = false;
-  
+
     if (!email || !password) {
       setError("Email and password are required.");
       hasError = true;
     }
-  
+
     if (!hasError) {
       if (!email.endsWith("@gmail.com")) {
         setError("Email must end with @gmail.com");
         hasError = true;
       }
-  
+
       if (
         !hasError &&
         (password.length < 6 ||
@@ -37,37 +37,49 @@ export default function Signup() {
         hasError = true;
       }
     }
-  
+
     if (!hasError) {
       try {
         let role = "user";
-  
+
         if (code) {
           const response = await fetch("http://localhost:9999/doctorCode");
           if (response.ok) {
             const data = await response.json();
             if (data.some((entry) => entry.code === code)) {
               role = "doctor";
-  
-              await fetch(`http://localhost:9999/doctorCode/${data.find(entry => entry.code === code).id}`, {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
+
+              await fetch(
+                `http://localhost:9999/doctorCode/${
+                  data.find((entry) => entry.code === code).id
+                }`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
             } else {
-              const adminResponse = await fetch("http://localhost:9999/adminCode");
+              const adminResponse = await fetch(
+                "http://localhost:9999/adminCode"
+              );
               if (adminResponse.ok) {
                 const adminData = await adminResponse.json();
                 if (adminData.some((entry) => entry.admin === code)) {
                   role = "admin";
-  
-                  await fetch(`http://localhost:9999/adminCode/${adminData.find(entry => entry.admin === code).id}`, {
-                    method: "DELETE",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                  });
+
+                  await fetch(
+                    `http://localhost:9999/adminCode/${
+                      adminData.find((entry) => entry.admin === code).id
+                    }`,
+                    {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }
+                  );
                 } else {
                   setError("Invalid code.");
                   hasError = true;
@@ -82,7 +94,7 @@ export default function Signup() {
             return;
           }
         }
-  
+
         if (!hasError) {
           const response = await fetch("http://localhost:9999/infor", {
             method: "POST",
@@ -96,10 +108,14 @@ export default function Signup() {
               role,
             }),
           });
-  
+
           if (response.ok) {
+            const data = await response.json();
+            const { id } = data;
+
+            localStorage.setItem("userId", id);
             console.log("Signup successful!");
-            window.location.href = "/login";
+            window.location.href = "/update-profile";
           } else {
             setError("Signup failed. Please try again later.");
           }
@@ -109,7 +125,6 @@ export default function Signup() {
       }
     }
   };
-  
 
   return (
     <div className="bg-[#DDE5F4] w-screen h-screen flex items-center justify-center">
