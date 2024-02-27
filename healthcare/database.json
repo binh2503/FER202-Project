@@ -83,12 +83,26 @@
       "code": "binhdo",
       "role": "admin",
       "id": "1O0UvGj"
+    },
+    {
+      "email": "tungta@gmail.com",
+      "password": "Tatung123",
+      "code": "DGB333",
+      "role": "doctor",
+      "id": "glmKD5J"
+    },
+    {
+      "email": "langu@gmail.com",
+      "password": "Tatung123",
+      "code": "DGB345",
+      "role": "doctor",
+      "id": "ASWF_4n"
     }
   ],
   "doctorCode": [
     {
-      "id": "3",
-      "code": "DGB345"
+      "id": "4",
+      "code": "DGB123"
     }
   ],
   "adminCode": []

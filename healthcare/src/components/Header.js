@@ -1,4 +1,4 @@
-import { UilUser } from '@iconscout/react-unicons'
+import { UilUser, UilSignout } from '@iconscout/react-unicons'
 export default function Header() {
     return (
         <div className="w-screen h-auto bg-white flex justify-center">
@@ -20,10 +20,14 @@ export default function Header() {
                         <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
                     </div>
                 </div>
-                <div className="h-full flex items-center">
+                <div className="h-full flex items-center gap-[20px]">
                     <a href="/profile">
                         <button className="h-[40px] w-[40px] bg-[#0872BB] flex justify-center items-center text-white font-mono font-bold rounded-[30px]"><UilUser /></button>
                     </a>
+                    <a href="/">
+                        <button className="h-[40px] w-[40px] bg-[#0872BB] flex justify-center items-center text-white font-mono font-bold rounded-[30px]"><UilSignout /></button>
+                    </a>
+
                 </div>
             </div>
         </div>

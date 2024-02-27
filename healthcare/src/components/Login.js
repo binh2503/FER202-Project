@@ -1,15 +1,17 @@
 import { UilLock, UilEnvelopeAlt } from "@iconscout/react-unicons";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     setSubmitted(true); // Thêm dòng này để cập nhật trạng thái submitted
-  let hasError = false;
+    let hasError = false;
 
     if (!email || !password) {
       setError("Email and password cannot be empty.");
@@ -48,7 +50,7 @@ export default function Login() {
 
       if (user) {
         console.log("Login successful!");
-        // Thực hiện các hành động sau khi đăng nhập thành công
+        navigate("/homepage"); // Navigate to /homepage
       } else {
         setError("Invalid email or password");
       }

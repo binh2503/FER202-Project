@@ -99,7 +99,7 @@ export default function Signup() {
   
           if (response.ok) {
             console.log("Signup successful!");
-            window.location.href = "/login";
+            window.location.href = "/";
           } else {
             setError("Signup failed. Please try again later.");
           }
