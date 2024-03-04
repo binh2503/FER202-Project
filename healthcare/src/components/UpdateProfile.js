@@ -12,6 +12,7 @@ export default function UpdateProfile() {
         phone: "",
         address: ""
     });
+    const [phoneError, setPhoneError] = useState("");
 
     useEffect(() => {
         const userId = localStorage.getItem('userId');
@@ -31,14 +32,27 @@ export default function UpdateProfile() {
                             dateOfBirth: data.dateOfBirth || "",
                             phone: data.phone || "",
                             address: data.address || ""
-                        }));
+                        }));                       
                     }
                 })
                 .catch(error => console.error("Error fetching user data:", error));
         }
     }, []);
 
+    const validatePhoneNumber = () => {
+        const phonePattern = /^0\d{9}$/;
+        if (!phonePattern.test(userData.phone)) {
+            setPhoneError("Phone number must start with 0 and have 10 digits.");
+            return false;
+        }
+        return true;
+    };
+
     const handleUpdate = async () => {
+        if (!validatePhoneNumber()) {
+            return;
+        }
+
         try {
             const response = await fetch(`http://localhost:9999/infor/${userData.id}`, {
                 method: 'PUT',
@@ -56,6 +70,7 @@ export default function UpdateProfile() {
         } catch (error) {
             console.error("Error:", error);
         }
+        window.location.href='/'
     };
 
     const handleFullNameChange = (e) => {
@@ -77,6 +92,7 @@ export default function UpdateProfile() {
             ...prevUserData,
             phone: e.target.value
         }));
+        setPhoneError("");
     };
 
     const handleAddressChange = (e) => {
@@ -111,6 +127,7 @@ export default function UpdateProfile() {
                             <div className="w-3/4">
                                 <label htmlFor="phone" className="font-mono text-black text-[20px] font-bold">Phone number</label>
                                 <input placeholder="0xxxxxxxxx" type="text" id="phone" name="phone" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " value={userData.phone} onChange={handlePhoneChange} />
+                                {phoneError && <p className="text-red-500 font-mono text-[13px]">{phoneError}</p>}
                             </div>
                         </div>
                         <div className="w-1/2">

@@ -1,7 +1,6 @@
 import { UilLock, UilEnvelopeAlt } from "@iconscout/react-unicons";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,7 +11,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     setSubmitted(true);
-  let hasError = false;
+    let hasError = false;
 
     if (!email || !password) {
       setError("Email and password cannot be empty.");
@@ -39,19 +38,31 @@ export default function Login() {
     }
 
     if (!hasError && submitted) {
-      const response = await fetch("http://localhost:9999/infor");
-      const data = await response.json();
-      console.log(data);
-      const user = data.find(
-        (userInfo) =>
-          userInfo.email === email && userInfo.password.toString() === password
-      );
+      try {
+        const response = await fetch("http://localhost:9999/infor");
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          const user = data.find(
+            (userInfo) =>
+              userInfo.email === email &&
+              userInfo.password.toString() === password
+          );
 
-      if (user) {
-        console.log("Login successful!");
-        window.location.href = "/homepage";
-      } else {
-        setError("Invalid email or password");
+          if (user) {
+            console.log("user.id", user.id);
+            console.log("Login successful!");
+            localStorage.setItem("userId", user.id);
+            localStorage.removeItem("otherUserId");
+            window.location.href = "/homepage";
+          } else {
+            setError("Invalid email or password");
+          }
+        } else {
+          setError("Failed to fetch user information. Please try again later.");
+        }
+      } catch (error) {
+        setError("An error occurred while processing your request.");
       }
     }
   };
