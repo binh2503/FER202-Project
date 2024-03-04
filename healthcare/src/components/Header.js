@@ -1,4 +1,5 @@
 import { UilUser, UilSignout } from '@iconscout/react-unicons'
+import Signup from './Signup';
 export default function Header() {
     return (
         <div className="w-screen h-auto bg-white flex justify-center">
