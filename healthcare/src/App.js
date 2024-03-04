@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./components/Homepage";
 import UpdateProfile from "./components/UpdateProfile";
 import UserInformation from "./components/UserInformation";
+import Booking from "./components/Booking";
 function App() {
   return (
     // <div className="w-screen h-screen">
@@ -25,6 +26,7 @@ function App() {
           <Route path='/update-profile' element={<UpdateProfile />}></Route>
           <Route path='/user' element={<UserInformation />}></Route>
           <Route path='/profile' element={<UserInformation />} > </Route>
+          <Route path='/booking' element={<Booking />} > </Route>
         </Routes>
 
       </BrowserRouter>
