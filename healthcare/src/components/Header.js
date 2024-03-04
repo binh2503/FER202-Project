@@ -16,7 +16,7 @@ export default function Header() {
                         <a className="text-[18px] font-mono font-bold" href="#">Home</a>
                         <a className="text-[18px] font-mono font-bold" href="#">About</a>
                         <a className="text-[18px] font-mono font-bold" href="#">Specialist</a>
-                        <a className="text-[18px] font-mono font-bold" href="#">Doctors</a>
+                        <a className="text-[18px] font-mono font-bold" href="/booking">Doctors</a>
                         <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
                     </div>
                 </div>
