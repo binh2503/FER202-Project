@@ -1,25 +1,142 @@
 {
   "infor": [
     {
-      "id": "cb2c",
-      "email": "binhbop123@gmail.com",
-      "password": "123456yyy",
-      "doctorCode": "",
-      "role": "user"
+      "id": "6d0e",
+      "email": "binhdo11111@gmail.com",
+      "password": "1234456yy",
+      "role": "doctor",
+      "fullName": "Do Gia Binh",
+      "dateOfBirth": "2024-03-14",
+      "phone": "7863047694",
+      "address": "Thai Binh"
     },
     {
-      "id": "516a",
-      "email": "binhboopp@gmail.com",
+      "id": "4d69",
+      "email": "binhgg@gmail.com",
+      "password": "123456yyyy",
+      "role": "doctor",
+      "fullName": "Hiram Hicks",
+      "dateOfBirth": "",
+      "phone": "7863047694",
+      "address": "Fugit numquam ducimus consectetur aliquam ipsam et vitae enim quisquam Nam mollitia itaque iure"
+    },
+    {
+      "id": "4606",
+      "email": "bacsibinh@gmail.com",
       "password": "123456yyy",
-      "doctorCode": "DGB123",
-      "role": "doctor"
+      "role": "user",
+      "fullName": "Hiram Hicks",
+      "dateOfBirth": "2024-03-21",
+      "phone": "0123456789",
+      "address": "fuit"
     }
   ],
   "doctorCode": [
     {
       "id": "4",
       "code": "DGB123"
+    },
+    {
+      "id": "5",
+      "code": "123"
+    },
+    {
+      "id": "6",
+      "code": "1234"
+    },
+    {
+      "id": "7",
+      "code": "1235"
+    },
+    {
+      "id": "8",
+      "code": "1236"
+    },
+    {
+      "id": "9",
+      "code": "1237"
     }
   ],
-  "adminCode": []
+  "adminCode": [
+    {
+      "id": "4",
+      "code": "DGB123"
+    },
+    {
+      "id": "5",
+      "code": "123"
+    },
+    {
+      "id": "6",
+      "code": "1234"
+    },
+    {
+      "id": "7",
+      "code": "1235"
+    }
+  ],
+  "pathological": [
+    {
+      "id": "1",
+      "name": "Obstetric"
+    },
+    {
+      "id": "2",
+      "name": "Heart"
+    },
+    {
+      "id": "3",
+      "name": "Pediatrics"
+    },
+    {
+      "id": "4",
+      "name": "General health"
+    },
+    {
+      "id": "5",
+      "name": "Digest"
+    }
+  ],
+  "booking": [
+    {
+      "id": "1221",
+      "doctorId": "4d69",
+      "patientId": "4606",
+      "time": "20:54",
+      "date": "2024-03-14",
+      "symptoms": "tessstttt",
+      "healthProblem": "Heart",
+      "status": true
+    },
+    {
+      "id": "74be",
+      "doctorId": "",
+      "patientId": "4606",
+      "time": "",
+      "date": "",
+      "symptoms": "",
+      "healthProblem": "",
+      "status": true
+    },
+    {
+      "id": "1b76",
+      "doctorId": "",
+      "patientId": "4606",
+      "time": "21:05",
+      "date": "2024-03-01",
+      "symptoms": "",
+      "healthProblem": "",
+      "status": true
+    },
+    {
+      "id": "5f95",
+      "doctorId": "",
+      "patientId": "4606",
+      "time": "21:08",
+      "date": "2024-03-08",
+      "symptoms": "",
+      "healthProblem": "",
+      "status": true
+    }
+  ]
 }
