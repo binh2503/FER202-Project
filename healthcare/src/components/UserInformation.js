@@ -2,19 +2,30 @@ import { UilUser } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
 
 export default function UserInformation() {
-  const [personalInfor, setPersonalInfor] = useState(null);
+  const [personalInfo, setPersonalInfo] = useState(null);
+  const [bookingInfo, setBookingInfo] = useState([]);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-
+  
     if (userId) {
       fetch(`http://localhost:9999/infor/${userId}`)
         .then((response) => response.json())
         .then((data) => {
-          setPersonalInfor(data);
+          setPersonalInfo(data);
+          const patientId = data.id;
+
+          fetch(`http://localhost:9999/booking?patientId=${patientId}`)
+            .then((response) => response.json())
+            .then((bookingData) => {
+              setBookingInfo(bookingData);
+            })
+            .catch((error) => {
+              console.error("Error fetching booking data:", error);
+            });
         })
         .catch((error) => {
-          console.error("Error fetching data:", error);
+          console.error("Error fetching user data:", error);
         });
     }
   }, []);
@@ -34,7 +45,7 @@ export default function UserInformation() {
               </div>
             </div>
             <div className="w-3/4 mt-[20px]">
-              {personalInfor && (
+              {personalInfo && (
                 <div className="w-full h-auto">
                   <p className="font-mono text-[30px] font-extrabold mb-[20px]">
                     Personal
@@ -42,26 +53,26 @@ export default function UserInformation() {
                   <div className="flex ">
                     <p className="text-[20px] font-mono font-bold">Full name:</p>
                     <p className="text-[20px] font-mono ml-[10px]">
-                      {personalInfor.fullName}
+                      {personalInfo.fullName}
                     </p>
                   </div>
                   <div className="flex ">
                     <p className="text-[20px] font-mono font-bold">
                       Date of birth:
                     </p>
-                    <p className="text-[20px] font-mono ml-[10px]">{personalInfor.dateOfBirth}</p>
+                    <p className="text-[20px] font-mono ml-[10px]">{personalInfo.dateOfBirth}</p>
                   </div>
                   <div className="flex ">
                     <p className="text-[20px] font-mono font-bold">Email:</p>
                     <p className="text-[20px] font-mono ml-[10px]">
-                      {personalInfor.email}
+                      {personalInfo.email}
                     </p>
                   </div>
                   <div className="flex ">
                     <p className="text-[20px] font-mono font-bold">
                       Phone number:
                     </p>
-                    <p className="text-[20px] font-mono ml-[10px]">{personalInfor.phone}</p>
+                    <p className="text-[20px] font-mono ml-[10px]">{personalInfo.phone}</p>
                   </div>
                 </div>
               )}
@@ -88,33 +99,34 @@ export default function UserInformation() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white">
-                  <td className="px-4 py-2 border">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p>2021-10-10</p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 border">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p>Dr.Smith</p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 border">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p>16:00</p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 border">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <p>2021-10-10</p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 border">
-                    <div className="w-full h-full flex items-center justify-center max-w-[300px]">
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 border ">
+                {bookingInfo.map((booking) => (
+                  <tr key={booking.id} className="bg-white">
+                    <td className="px-4 py-2 border">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p>{booking.currentDate}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p>{booking.doctorFullName}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p>{booking.time}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <div className="w-full h-full flex items-center justify-center">
+                        <p>{booking.date}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 border">
+                      <div className="w-full h-full flex items-center justify-center max-w-[300px]">
+                        <p>{booking.symptoms}</p>
+                      </div>
+                    </td>
+                    <td className="px-4 py-2 border ">
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="flex gap-5">
                         <button className="bg-blue-500 text-white w-20 rounded-md py-1">Rate</button>
@@ -122,7 +134,8 @@ export default function UserInformation() {
                       </div>
                     </div>
                   </td>
-                </tr>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -130,8 +143,6 @@ export default function UserInformation() {
           <div className="w-full h-[1px] bg-[#109AE5] mt-[20px]"></div>
         </div>
       </div>
-
-
     </div>
   );
 }
