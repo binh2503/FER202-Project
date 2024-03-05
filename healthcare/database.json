@@ -15,7 +15,7 @@
       "email": "binhgg@gmail.com",
       "password": "123456yyyy",
       "role": "doctor",
-      "fullName": "Hiram Hicks",
+      "fullName": "Hiram bigboy",
       "dateOfBirth": "",
       "phone": "7863047694",
       "address": "Fugit numquam ducimus consectetur aliquam ipsam et vitae enim quisquam Nam mollitia itaque iure"
@@ -23,13 +23,13 @@
     {
       "id": "4606",
       "email": "bacsibinh@gmail.com",
-      "role": "user",
+      "password": "123456yyyy",
+      "role": "doctor",
       "fullName": "Hiram Hicks",
       "dateOfBirth": "2024-03-21",
       "phone": "0123456789",
-      "address": "fuit"
-      "doctorCode": "DGB123",
-      "role": "doctor"
+      "address": "fuit",
+      "doctorCode": "DGB123"
     },
     {
       "id": "kt0zWa6",
@@ -110,44 +110,15 @@
   ],
   "booking": [
     {
-      "id": "1221",
+      "id": "5b23",
       "doctorId": "4d69",
       "patientId": "4606",
-      "time": "20:54",
-      "date": "2024-03-14",
-      "symptoms": "tessstttt",
-      "healthProblem": "Heart",
-      "status": true
-    },
-    {
-      "id": "74be",
-      "doctorId": "",
-      "patientId": "4606",
-      "time": "",
-      "date": "",
-      "symptoms": "",
-      "healthProblem": "",
-      "status": true
-    },
-    {
-      "id": "1b76",
-      "doctorId": "",
-      "patientId": "4606",
-      "time": "21:05",
+      "time": "21:22",
       "date": "2024-03-01",
-      "symptoms": "",
-      "healthProblem": "",
-      "status": true
-    },
-    {
-      "id": "5f95",
-      "doctorId": "",
-      "patientId": "4606",
-      "time": "21:08",
-      "date": "2024-03-08",
-      "symptoms": "",
-      "healthProblem": "",
-      "status": true
+      "symptoms": "a",
+      "healthProblem": "Heart",
+      "status": true,
+      "currentDate": "2024-03-05"
     }
   ]
 }

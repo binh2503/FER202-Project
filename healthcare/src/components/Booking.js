@@ -41,6 +41,7 @@ export default function Booking() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const currentDate = new Date().toISOString().split('T')[0];
 
     const bookingData = {
       doctorId: selectedDoctorId,
@@ -50,6 +51,7 @@ export default function Booking() {
       symptoms: symptoms,
       healthProblem: selectedHealthProblem,
       status: true,
+      currentDate: currentDate,
     };
 
     fetch("http://localhost:9999/booking", {
