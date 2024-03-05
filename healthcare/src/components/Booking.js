@@ -42,6 +42,8 @@ export default function Booking() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const currentDate = new Date().toISOString().split('T')[0];
+    const selectedDoctor = doctors.find((doctor) => doctor.id === selectedDoctorId);
+    const doctorFullName = selectedDoctor ? selectedDoctor.fullName : "Unknown";
 
     const bookingData = {
       doctorId: selectedDoctorId,
@@ -52,6 +54,7 @@ export default function Booking() {
       healthProblem: selectedHealthProblem,
       status: true,
       currentDate: currentDate,
+      doctorFullName: doctorFullName,
     };
 
     fetch("http://localhost:9999/booking", {
