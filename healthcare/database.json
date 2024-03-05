@@ -23,12 +23,23 @@
     {
       "id": "4606",
       "email": "bacsibinh@gmail.com",
-      "password": "123456yyy",
       "role": "user",
       "fullName": "Hiram Hicks",
       "dateOfBirth": "2024-03-21",
       "phone": "0123456789",
       "address": "fuit"
+      "doctorCode": "DGB123",
+      "role": "doctor"
+    },
+    {
+      "id": "kt0zWa6",
+      "email": "test1@gmail.com",
+      "password": "123456yy",
+      "role": "user",
+      "fullName": "Ronaldo",
+      "dateOfBirth": "2024-02-28",
+      "phone": "0999999999",
+      "address": "Ha Noi"
     }
   ],
   "doctorCode": [
