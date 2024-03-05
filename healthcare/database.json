@@ -13,6 +13,16 @@
       "password": "123456yyy",
       "doctorCode": "DGB123",
       "role": "doctor"
+    },
+    {
+      "id": "kt0zWa6",
+      "email": "test1@gmail.com",
+      "password": "123456yy",
+      "role": "user",
+      "fullName": "Ronaldo",
+      "dateOfBirth": "2024-02-28",
+      "phone": "0999999999",
+      "address": "Ha Noi"
     }
   ],
   "doctorCode": [
