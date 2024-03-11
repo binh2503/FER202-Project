@@ -137,6 +137,15 @@ export default function UpdateProfile() {
                             </div>
                         </div>
                     </div>
+                    <div className="w-full flex mt-[10px]">
+                        <div className="w-1/2">
+                            <div className="w-3/4">
+                                <label htmlFor="phone" className="font-mono text-black text-[20px] font-bold">Choose specify</label>
+                                <input placeholder="0xxxxxxxxx" type="text" id="phone" name="phone" className="w-full h-[40px] rounded-[5px] border-[1px] border-black mt-1 pl-[5px] font-mono " value={userData.phone} onChange={handlePhoneChange} />
+                                {phoneError && <p className="text-red-500 font-mono text-[13px]">{phoneError}</p>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="w-full flex justify-center">
                     <button onClick={handleUpdate} className="w-1/4 h-[40px] bg-[#109AE5] rounded-[5px] mt-[20px] font-mono text-white text-[20px] font-bold">Update</button>
