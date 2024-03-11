@@ -8,6 +8,7 @@ import Homepage from "./components/Homepage";
 import UpdateProfile from "./components/UpdateProfile";
 import UserInformation from "./components/UserInformation";
 import Booking from "./components/Booking";
+import DoctorList from "./components/DoctorList";
 function App() {
   return (
     // <div className="w-screen h-screen">
@@ -27,6 +28,7 @@ function App() {
           <Route path='/user' element={<UserInformation />}></Route>
           <Route path='/profile' element={<UserInformation />} > </Route>
           <Route path='/booking' element={<Booking />} > </Route>
+          <Route path='/doctor-list' element={<DoctorList />} > </Route>
         </Routes>
 
       </BrowserRouter>
