@@ -1,7 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { UilSearch } from '@iconscout/react-unicons';
 
 export default function DoctorList() {
   const [doctors, setDoctors] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const searchRef = useRef();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,9 +23,6 @@ export default function DoctorList() {
               `http://localhost:9999/rating?doctorId=${doctor.id}`
             );
             const ratingData = await ratingResponse.json();
-
-            console.log("Doctor:", doctor);
-            console.log("Rating Data:", ratingData);
 
             const doctorRating = ratingData.find(
               (rating) => rating.doctorId === doctor.id
@@ -44,6 +48,47 @@ export default function DoctorList() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const results = doctors.filter(doctor =>
+      doctor.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doctor.specify.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+
+    const suggest = doctors.filter(doctor =>
+      doctor.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
+      doctor.specify.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+    setSuggestions(suggest);
+  }, [searchTerm, doctors]);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setShowSuggestions(true);
+  };
+
+  const handleSearch = () => {
+    // You can perform any additional actions here if needed
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchTerm(suggestion.fullName);
+    setShowSuggestions(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setShowSuggestions(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="w-screen h-auto flex justify-center items-center mt-[10px]">
       <div className="w-3/4">
@@ -54,6 +99,30 @@ export default function DoctorList() {
             </h2>
           </div>
           <div className="w-full h-[2px] bg-[#109AE5] rounded-[-2px] mt-[10px]"></div>
+          <div className="w-full flex justify-center items-center mt-[30px]">
+            <div className="flex w-[500px] relative" ref={searchRef}>
+              <input
+                className="border-2 border-solid border-[#109AE5] w-[400px] h-[50px] font-mono pl-[10px] rounded-l-[30px]"
+                type="text"
+                placeholder="Search doctor by name"
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onClick={() => setShowSuggestions(true)}
+              />
+              <button className="border-2 border-solid border-[#109AE5] w-[100px] bg-[#109AE5] flex justify-center items-center rounded-r-[30px]" onClick={handleSearch}>
+                <UilSearch color={"white"} />
+              </button>
+              {/* {showSuggestions && suggestions.length > 0 && (
+                <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md shadow-md z-10">
+                  {suggestions.map(doctor => (
+                    <li key={doctor.id} className="px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={() => handleSuggestionClick(doctor)}>
+                      {doctor.fullName} - {doctor.specify}
+                    </li>
+                  ))}
+                </ul>
+              )} */}
+            </div>
+          </div>
           <div className="w-full">
             <table className="w-full mt-8 table-auto font-mono">
               <thead>
@@ -65,16 +134,16 @@ export default function DoctorList() {
                 </tr>
               </thead>
               <tbody>
-                {doctors.map((doctor) => (
+                {searchResults.map((doctor) => (
                   <tr key={doctor.id} className="bg-white">
                     <td className="px-4 py-2 border">{doctor.fullName}</td>
                     <td className="px-4 py-2 border">{doctor.specify}</td>
                     <td className="px-4 py-2 border">
-                      {doctor.rating !== null ? (
-                       `${((doctor.rating / doctor.ratingCount)/2).toFixed(1)}/5 stars (of ${doctor.ratingCount} rating)`
-                      ) : (
-                        "No rating"
-                      )}
+                      {doctor.rating !== null
+                        ? `${(doctor.rating / doctor.ratingCount / 2).toFixed(
+                            1
+                          )}/5 stars (of ${doctor.ratingCount} rating)`
+                        : "No rating"}
                     </td>
                     <td className="px-4 py-2 border">
                       <div className="w-full h-full flex items-center justify-center">
