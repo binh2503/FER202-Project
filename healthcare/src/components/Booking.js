@@ -55,6 +55,7 @@ export default function Booking() {
       status: true,
       currentDate: currentDate,
       doctorFullName: doctorFullName,
+      isRated: false
     };
 
     fetch("http://localhost:9999/booking", {
