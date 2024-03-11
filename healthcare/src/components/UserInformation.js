@@ -1,4 +1,4 @@
-import { UilUser } from "@iconscout/react-unicons";
+import { UilUser, UilArrowRight } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
 
 export default function UserInformation() {
@@ -173,9 +173,20 @@ export default function UserInformation() {
     <div className="w-screen h-auto flex justify-center items-center mt-[10px]">
       <div className="w-3/4">
         <div className="w-full h-auto">
-          <h2 className="font-mono text-[20px] font-bold text-[#109AE5]">
-            User Information
-          </h2>
+          <div className="w-full flex justify-between">
+            <h2 className="font-mono text-[20px] font-bold text-[#109AE5]">
+              User Information
+            </h2>
+            <div className="flex">
+              <a href="/homepage">
+                <button className="bg-[#109AE5] text-white  rounded-md p-1 font-bold font-mono flex">
+                  Back to home
+                  <UilArrowRight size={20} />
+                </button>
+              </a>
+
+            </div>
+          </div>
           <div className="w-full h-[2px] bg-[#109AE5] rounded-[-2px] mt-1"></div>
           <div className="w-full h-auto flex">
             <div className="w-1/4 mt-[20px]">
@@ -332,9 +343,9 @@ export default function UserInformation() {
                 onChange={(e) => {
                   const inputValue = parseFloat(e.target.value);
                   if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 10) {
-                      setRatingValue(inputValue);
+                    setRatingValue(inputValue);
                   }
-              }}
+                }}
                 className="w-full border rounded-md px-3 py-2 mt-1"
               />
             </div>
