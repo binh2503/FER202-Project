@@ -184,7 +184,6 @@ export default function UserInformation() {
                   <UilArrowRight size={20} />
                 </button>
               </a>
-
             </div>
           </div>
           <div className="w-full h-[2px] bg-[#109AE5] rounded-[-2px] mt-1"></div>
