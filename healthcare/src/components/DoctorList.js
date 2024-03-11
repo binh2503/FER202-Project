@@ -1,4 +1,4 @@
-import { UilArrowRight } from "@iconscout/react-unicons";
+import { UilArrowRight, UilSearch } from "@iconscout/react-unicons";
 export default function DoctorList() {
     return (
         <div className="w-screen h-auto flex justify-center items-center mt-[10px]">
@@ -18,6 +18,18 @@ export default function DoctorList() {
                         </div>
                     </div>
                     <div className="w-full h-[2px] bg-[#109AE5] rounded-[-2px] mt-[10px]"></div>
+                    <div className="w-full flex justify-center items-center mt-[30px]">
+                        <div className="flex w-[500px]">
+                            <input
+                                className="border-2 border-solid border-[#109AE5] w-[400px] h-[50px] font-mono pl-[10px] rounded-l-[30px]"
+                                type="text"
+                                placeholder="Search doctor by name"
+                            />
+                            <button className="border-2 border-solid border-[#109AE5] w-[100px] bg-[#109AE5] flex justify-center items-center rounded-r-[30px]">
+                                <UilSearch color={"white"}/>
+                            </button>
+                        </div>
+                    </div>
                     <div className="w-full">
                         <table className="w-full mt-8 table-auto font-mono">
                             <thead>
