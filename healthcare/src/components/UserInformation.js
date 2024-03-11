@@ -50,9 +50,7 @@ export default function UserInformation() {
   };
 
   const handleConfirmation = (confirmed) => {
-    // Ẩn màn hình xác nhận
     setShowConfirmation(false);
-    // Nếu người dùng xác nhận hủy cuộc hẹn, thực hiện xóa
     if (confirmed) {
       fetch(`http://localhost:9999/booking/${cancelBookingId}`, {
         method: "DELETE",
@@ -78,21 +76,19 @@ export default function UserInformation() {
     );
     if (!selectedBooking) return;
 
-    // Không cần gửi lại dữ liệu isRated khi cập nhật đánh giá
     const updatedBookingInfo = bookingInfo.map((booking) => {
       if (booking.id === selectedBookingId) {
         return {
           ...booking,
           isRated: true,
+          status: false, // Set status to false when rated
         };
       }
       return booking;
     });
 
-    // Cập nhật trạng thái isRated trong state
     setBookingInfo(updatedBookingInfo);
 
-    // Gửi request PUT để cập nhật dữ liệu isRated lên server
     fetch(`http://localhost:9999/booking/${selectedBookingId}`, {
       method: "PUT",
       headers: {
@@ -101,6 +97,7 @@ export default function UserInformation() {
       body: JSON.stringify({
         ...selectedBooking,
         isRated: true,
+        status: false,
       }),
     })
       .then((response) => response.json())
@@ -112,7 +109,6 @@ export default function UserInformation() {
         console.error("Error updating booking with rating:", error);
       });
 
-    // Gửi dữ liệu đánh giá lên server
     const ratingData = {
       patientId: personalInfo.id,
       doctorId: selectedBooking.doctorId,
@@ -295,14 +291,25 @@ export default function UserInformation() {
                                 Rate
                               </button>
                             )}
+                             {!booking.isRated && (
                             <button
                               className="bg-red-500 text-white w-20 rounded-md py-1"
                               onClick={() =>
                                 handleCancelAppointment(booking.id)
                               }
+                              disabled={!booking.status}
                             >
                               Cancel
                             </button>
+                             )}
+                            {!booking.status && (
+                              <button
+                                className="bg-green-500 text-white w-20 rounded-md py-1"
+                                disabled                              
+                              >
+                                Done
+                              </button>
+                            )}
                           </div>
                         </div>
                       </td>
