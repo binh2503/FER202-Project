@@ -21,12 +21,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<Signup />} > </Route>
-          <Route path='/' element={<Login />} > </Route>
+          <Route path='/login' element={<Login />} > </Route>
           <Route path='/forgotpassword' element={<ForgotPassword />}></Route>
-          <Route path='/homepage' element={<Homepage />}></Route>
+          <Route path='/homepage/user' element={<Homepage />}></Route>
+          <Route path='/homepage/doctor' element={<Homepage />}></Route>
+          <Route path='/' element={<Homepage />}></Route>
           <Route path='/update-profile' element={<UpdateProfile />}></Route>
-          <Route path='/user' element={<UserInformation />}></Route>
-          <Route path='/profile' element={<UserInformation />} > </Route>
+          <Route path='/user-profile' element={<UserInformation />} > </Route>
+          <Route path='/doctor-profile' element={<UserInformation />} > </Route>
           <Route path='/booking' element={<Booking />} > </Route>
           <Route path='/doctor-list' element={<DoctorList />} > </Route>
         </Routes>
