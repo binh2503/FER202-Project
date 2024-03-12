@@ -1,5 +1,7 @@
 import { Tab } from '@headlessui/react'
 import BookingHistory from './BookingHistory';
+import Medical from './Medical';
+import Diseases from './Diseases';
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
@@ -39,8 +41,8 @@ export default function MedicalHistoryTabs() {
                 </Tab.List>
                 <Tab.Panels>
                     <Tab.Panel><BookingHistory /></Tab.Panel>
-                    <Tab.Panel>Content 2</Tab.Panel>
-                    <Tab.Panel>Content 3</Tab.Panel>
+                    <Tab.Panel><Medical/></Tab.Panel>
+                    <Tab.Panel><Diseases/></Tab.Panel>
                 </Tab.Panels>
             </Tab.Group>
         </div>
