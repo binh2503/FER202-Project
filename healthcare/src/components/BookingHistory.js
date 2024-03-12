@@ -1,5 +1,6 @@
 import { UilUser, UilArrowRight } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 
 export default function BookingHistory() {
   const [personalInfo, setPersonalInfo] = useState(null);
@@ -10,7 +11,7 @@ export default function BookingHistory() {
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [showRatingPopup, setShowRatingPopup] = useState(false);
   const [ratings, setRatings] = useState([]);
-
+  const location = useLocation();
   useEffect(() => {
     const userId = localStorage.getItem("userId");
 
@@ -164,7 +165,7 @@ export default function BookingHistory() {
     setShowRatingPopup(true);
     setSelectedBookingId(bookingId);
   };
-
+  
   return (
     <div className="w-full h-auto flex justify-center items-center mt-[10px]">
       <div className="w-full">
@@ -177,7 +178,7 @@ export default function BookingHistory() {
               <thead>
                 <tr className="bg-[#109AE5] text-white font-bold">
                   <th className="px-4 py-2 border">Created Date</th>
-                  <th className="px-4 py-2 border">Doctor Name</th>
+                  <th className="px-4 py-2 border">{location.pathname === '/doctor-profile' ? "Patient Name" : "Doctor Name"}</th>
                   <th className="px-4 py-2 border">Time</th>
                   <th className="px-4 py-2 border">Date</th>
                   <th className="px-4 py-2 border">Describe</th>

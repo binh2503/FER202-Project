@@ -15,7 +15,7 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="h-full flex items-center">
-                    {location.pathname !== '/' && (
+                    {location.pathname === '/homepage/user' && (
                         <div className="gap-[50px] flex">
                             <a className="text-[18px] font-mono font-bold" href="#">Home</a>
                             <a className="text-[18px] font-mono font-bold" href="#">About</a>
@@ -23,6 +23,14 @@ export default function Header() {
                             <a className="text-[18px] font-mono font-bold" href="/doctor-list">Doctors</a>
                             <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
                             <a className="text-[18px] font-mono font-bold" href="/booking">Booking</a>
+                        </div>
+                    )}
+                    {location.pathname === '/homepage/doctor' && (
+                        <div className="gap-[50px] flex">
+                            <a className="text-[18px] font-mono font-bold" href="#">Home</a>
+                            <a className="text-[18px] font-mono font-bold" href="#">About</a>
+                            <a className="text-[18px] font-mono font-bold" href="#">Specialist</a>
+                            <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
                         </div>
                     )}
                     {location.pathname === '/' && (

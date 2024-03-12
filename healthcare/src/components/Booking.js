@@ -70,7 +70,7 @@ export default function Booking() {
           throw new Error("Failed to book appointment");
         }
         console.log("Appointment booked successfully!");
-        window.location.href = "/homepage";
+        window.location.href = "/homepage/user";
       })
       .catch((error) => {
         console.error("Error booking appointment:", error);
