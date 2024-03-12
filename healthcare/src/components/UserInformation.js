@@ -1,6 +1,7 @@
 import { UilUser, UilArrowRight } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
 import BookingHistory from "./BookingHistory";
+import MedicalHistoryTabs from "./MedicalHistotyTabs";
 
 export default function UserInformation() {
   const [personalInfo, setPersonalInfo] = useState(null);
@@ -85,7 +86,7 @@ export default function UserInformation() {
             </div>
           </div>
           <div className="w-full h-[1px] bg-[#109AE5] mt-[20px]"></div>
-          <BookingHistory />
+          <MedicalHistoryTabs />
           <div className="w-full h-[1px] bg-[#109AE5] mt-[20px]"></div>
         </div>
       </div>
