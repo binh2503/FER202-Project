@@ -117,9 +117,10 @@
       "date": "2024-03-01",
       "symptoms": "aaaa",
       "healthProblem": "Heart",
-      "status": true,
+      "status": false,
       "currentDate": "2024-03-05",
-      "doctorFullName": "Do Gia Binh"
+      "doctorFullName": "Do Gia Binh",
+      "isRated": true
     },
     {
       "id": "c6cf",
@@ -129,9 +130,10 @@
       "date": "2024-03-08",
       "symptoms": "123124124",
       "healthProblem": "Pediatrics",
-      "status": true,
+      "status": false,
       "currentDate": "2024-03-05",
-      "doctorFullName": "Hiram Hicks"
+      "doctorFullName": "Hiram Hicks",
+      "isRated": true
     },
     {
       "id": "83c7",
@@ -144,6 +146,56 @@
       "status": true,
       "currentDate": "2024-03-05",
       "doctorFullName": "Hiram Hicks"
+    },
+    {
+      "id": "a69f",
+      "doctorId": "4606",
+      "patientId": "kt0zWa6",
+      "time": "20:28",
+      "date": "2024-03-16",
+      "symptoms": "455",
+      "healthProblem": "Digest",
+      "status": false,
+      "currentDate": "2024-03-12",
+      "doctorFullName": "Hiram Hicks",
+      "isRated": true
+    }
+  ],
+  "rating": [
+    {
+      "id": "3ef6",
+      "patientId": "kt0zWa6",
+      "doctorId": "6d0e",
+      "rating": 10,
+      "ratingCount": 1,
+      "bookingId": "181e"
+    },
+    {
+      "patientId": "kt0zWa6",
+      "doctorId": "4606",
+      "rating": 18,
+      "ratingCount": 2,
+      "bookingId": "a69f",
+      "id": "f685"
+    },
+    {
+      "patientId": "kt0zWa6",
+      "doctorId": "4d69",
+      "rating": 14,
+      "ratingCount": 2,
+      "bookingId": "d9b5",
+      "id": "7921"
+    }
+  ],
+  "medical": [],
+  "DiseasesHistory": [
+    {
+      "id": "9118",
+      "medicineName": "dau tym ",
+      "startDate": "2024-03-16",
+      "describe": "44444",
+      "status": "Chronic",
+      "patientId": "kt0zWa6"
     }
   ]
 }
