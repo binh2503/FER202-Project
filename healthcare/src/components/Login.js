@@ -50,11 +50,14 @@ export default function Login() {
           );
 
           if (user) {
-            console.log("user.id", user.id);
-            console.log("Login successful!");
             localStorage.setItem("userId", user.id);
             localStorage.removeItem("otherUserId");
-            window.location.href = "/homepage";
+
+            if (user.role === "user") {
+              window.location.href = "/homepage/user";
+            } else if (user.role === "doctor") {
+              window.location.href = "/homepage/doctor";
+            }
           } else {
             setError("Invalid email or password");
           }
