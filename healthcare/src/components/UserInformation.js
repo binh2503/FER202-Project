@@ -1,6 +1,5 @@
 import { UilUser, UilArrowRight } from "@iconscout/react-unicons";
 import { useState, useEffect } from "react";
-import BookingHistory from "./BookingHistory";
 import MedicalHistoryTabs from "./MedicalHistotyTabs";
 
 export default function UserInformation() {

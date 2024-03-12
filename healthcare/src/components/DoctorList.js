@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { UilSearch } from '@iconscout/react-unicons';
+import { UilSearch, UilArrowRight } from '@iconscout/react-unicons';
 
 export default function DoctorList() {
   const [doctors, setDoctors] = useState([]);
@@ -30,7 +30,7 @@ export default function DoctorList() {
 
             const rating = doctorRating ? doctorRating.rating : 0;
             const ratingCount = doctorRating ? doctorRating.ratingCount : 0;
-            
+
             return {
               ...doctor,
               rating,
@@ -97,6 +97,14 @@ export default function DoctorList() {
             <h2 className="font-mono text-[20px] font-bold text-[#109AE5]">
               Doctor List
             </h2>
+            <div className="flex">
+              <a href="/homepage">
+                <button className="bg-[#109AE5] text-white  rounded-md p-1 font-bold font-mono flex">
+                  Back to home
+                  <UilArrowRight size={20} />
+                </button>
+              </a>
+            </div>
           </div>
           <div className="w-full h-[2px] bg-[#109AE5] rounded-[-2px] mt-[10px]"></div>
           <div className="w-full flex justify-center items-center mt-[30px]">
@@ -124,6 +132,13 @@ export default function DoctorList() {
             </div>
           </div>
           <div className="w-full">
+            <a href="/booking">
+              <button className="bg-[#109AE5] p-[10px] rounded-[20px] text-white font-mono">
+                Book a doctor
+              </button>
+            </a>
+          </div>
+          <div className="w-full">
             <table className="w-full mt-8 table-auto font-mono">
               <thead>
                 <tr className="bg-[#109AE5] text-white font-bold">
@@ -141,8 +156,8 @@ export default function DoctorList() {
                     <td className="px-4 py-2 border">
                       {doctor.rating !== null
                         ? `${(doctor.rating / doctor.ratingCount / 2).toFixed(
-                            1
-                          )}/5 stars (of ${doctor.ratingCount} rating)`
+                          1
+                        )}/5 stars (of ${doctor.ratingCount} rating)`
                         : "No rating"}
                     </td>
                     <td className="px-4 py-2 border">

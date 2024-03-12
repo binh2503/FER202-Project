@@ -17,8 +17,9 @@ export default function Header() {
                         <a className="text-[18px] font-mono font-bold" href="#">Home</a>
                         <a className="text-[18px] font-mono font-bold" href="#">About</a>
                         <a className="text-[18px] font-mono font-bold" href="#">Specialist</a>
-                        <a className="text-[18px] font-mono font-bold" href="/booking">Doctors</a>
+                        <a className="text-[18px] font-mono font-bold" href="/doctor-list">Doctors</a>
                         <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
+                        <a className="text-[18px] font-mono font-bold" href="/booking">Booking</a>
                     </div>
                 </div>
                 <div className="h-full flex items-center gap-[20px]">
