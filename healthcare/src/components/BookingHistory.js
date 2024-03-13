@@ -11,6 +11,15 @@ export default function BookingHistory() {
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [showRatingPopup, setShowRatingPopup] = useState(false);
   const [ratings, setRatings] = useState([]);
+  const [prescriptionInfo, setPrescriptionInfo] = useState({
+    medicineName: "",
+    startDate: "",
+    endDate: "",
+    usage: "",
+    notification1: "",
+    notification2: "",
+  });
+  const [showPrescriptionPopup, setShowPrescriptionPopup] = useState(false);
   const location = useLocation();
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -171,7 +180,74 @@ export default function BookingHistory() {
     setShowRatingPopup(true);
     setSelectedBookingId(bookingId);
   };
-  
+
+  const handlePrescriptionChange = (e) => {
+    const { name, value } = e.target;
+    setPrescriptionInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value,
+    }));
+  };
+
+  const handleOpenPrescriptionPopup = (bookingId) => {
+    setShowPrescriptionPopup(true);
+    setSelectedBookingId(bookingId);
+  };
+
+  const handlePrescriptionSubmit = (e) => {
+    e.preventDefault();
+
+    if (!selectedBookingId) {
+      console.error("No selected booking.");
+      return;
+    }
+
+    const selectedBooking = bookingInfo.find(
+      (booking) => booking.id === selectedBookingId
+    );
+    if (!selectedBooking) {
+      console.error("Selected booking not found.");
+      return;
+    }
+
+    if (!selectedBooking) {
+      console.error("Selected booking not found.");
+      return;
+    }
+
+    const prescriptionData = {
+      ...prescriptionInfo,
+      prescriber: personalInfo.fullName,
+      patientId: selectedBooking.patientId,
+      patientFullName: selectedBooking.patientFullName,
+      doctorId: selectedBooking.doctorId,
+    };
+
+    fetch("http://localhost:9999/medical", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(prescriptionData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Prescription submitted:", data);
+        setPrescriptionInfo({
+          medicineName: "",
+          startDate: "",
+          endDate: "",
+          usage: "",
+          notification1: "",
+          notification2: "",
+        });
+        setShowPrescriptionPopup(false);
+      })
+      .catch((error) => {
+        console.error("Error submitting prescription:", error);
+      });
+  };
+
   return (
     <div className="w-full h-auto flex justify-center items-center mt-[10px]">
       <div className="w-full">
@@ -260,6 +336,16 @@ export default function BookingHistory() {
                                 Done
                               </button>
                             )}
+                            {personalInfo.role === "doctor" && (
+                              <button
+                                className="bg-green-500 text-white w-25 rounded-md py-1"
+                                onClick={() =>
+                                  handleOpenPrescriptionPopup(booking.id)
+                                }
+                              >
+                                <p className="p-[16px]">Prescribes medicine</p>
+                              </button>
+                            )}
                           </div>
                         </div>
                       </td>
@@ -279,6 +365,131 @@ export default function BookingHistory() {
             <p>Are you sure you want to cancel this appointment?</p>
             <button onClick={() => handleConfirmation(true)}>Yes</button>
             <button onClick={() => handleConfirmation(false)}>No</button>
+          </div>
+        </div>
+      )}
+
+      {showPrescriptionPopup && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-8 rounded-md">
+            <h2 className="text-xl font-bold mb-4">Prescribe Medicine</h2>
+            <form onSubmit={handlePrescriptionSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="medicineName"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Medicine Name:
+                </label>
+                <input
+                  type="text"
+                  id="medicineName"
+                  name="medicineName"
+                  value={prescriptionInfo.medicineName}
+                  onChange={handlePrescriptionChange}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="startDate"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Start Date:
+                </label>
+                <input
+                  type="date"
+                  id="startDate"
+                  name="startDate"
+                  value={prescriptionInfo.startDate}
+                  onChange={handlePrescriptionChange}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="endDate"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  End Date:
+                </label>
+                <input
+                  type="date"
+                  id="endDate"
+                  name="endDate"
+                  value={prescriptionInfo.endDate}
+                  onChange={handlePrescriptionChange}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="usage"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Usage:
+                </label>
+                <textarea
+                  id="usage"
+                  name="usage"
+                  value={prescriptionInfo.usage}
+                  onChange={handlePrescriptionChange}
+                  rows="3"
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                  required
+                ></textarea>
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="notification1"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Notification 1:
+                </label>
+                <input
+                  type="time"
+                  id="notification1"
+                  name="notification1"
+                  value={prescriptionInfo.notification1}
+                  onChange={handlePrescriptionChange}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                />
+              </div>
+              <div className="mb-4">
+                <label
+                  htmlFor="notification2"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Notification 2:
+                </label>
+                <input
+                  type="time"
+                  id="notification2"
+                  name="notification2"
+                  value={prescriptionInfo.notification2}
+                  onChange={handlePrescriptionChange}
+                  className="w-full border rounded-md px-3 py-2 mt-1"
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="button"
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2"
+                  onClick={() => setShowPrescriptionPopup(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
