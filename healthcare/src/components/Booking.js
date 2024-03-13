@@ -10,6 +10,7 @@ export default function Booking() {
   const [userId, setUserId] = useState("");
   const [selectedHealthProblem, setSelectedHealthProblem] = useState("");
   const [pathologicals, setPathologicals] = useState([]);
+  const [patientFullName, setPatientFullName] = useState("");
 
   useEffect(() => {
     const userIdFromStorage = localStorage.getItem("userId");
@@ -21,8 +22,18 @@ export default function Booking() {
       .then((response) => response.json())
       .then((data) => {
         const doctorData = data.filter((user) => user.role === "doctor");
+        console.log("doctorData: ", doctorData);
         setDoctors(doctorData);
         setLoading(false);
+        
+        // Find the user with the same id as userId and get their fullName
+      const currentUser = data.find(user => user.id === userIdFromStorage);
+      if (currentUser) {
+        const { fullName } = currentUser;
+        setPatientFullName(fullName);
+      }
+     
+
       })
       .catch((error) => {
         console.error("Error fetching doctors:", error);
@@ -41,8 +52,10 @@ export default function Booking() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const currentDate = new Date().toISOString().split('T')[0];
-    const selectedDoctor = doctors.find((doctor) => doctor.id === selectedDoctorId);
+    const currentDate = new Date().toISOString().split("T")[0];
+    const selectedDoctor = doctors.find(
+      (doctor) => doctor.id === selectedDoctorId
+    );
     const doctorFullName = selectedDoctor ? selectedDoctor.fullName : "Unknown";
 
     const bookingData = {
@@ -55,7 +68,8 @@ export default function Booking() {
       status: true,
       currentDate: currentDate,
       doctorFullName: doctorFullName,
-      isRated: false
+      patientFullName: patientFullName,
+      isRated: false,
     };
 
     fetch("http://localhost:9999/booking", {
@@ -158,7 +172,10 @@ export default function Booking() {
                 />
               </div>
             </div>
-            <div className="w-[300px] h-[40px] mt-[20px] flex items-center">
+            <div className="w-[610px] gap-[10px] h-[40px] mt-[20px] flex items-center">
+              <a href="/homepage/user" className="w-[300px] h-[40px] bg-[#999999] text-white text-center font-mono font-bold rounded-[30px]">
+                <p className="mt-[7px]">Cancel</p>
+              </a>
               <button
                 className="w-[300px] h-[40px] bg-[#0872BB] text-white font-mono font-bold rounded-[30px]"
                 type="submit"

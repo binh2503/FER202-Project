@@ -20,9 +20,15 @@ export default function BookingHistory() {
         .then((response) => response.json())
         .then((data) => {
           setPersonalInfo(data);
-          const patientId = data.id;
-
-          fetch(`http://localhost:9999/booking?patientId=${patientId}`)
+          
+          let fetchUrl;
+          if (data.role === 'doctor') {
+            fetchUrl = `http://localhost:9999/booking?doctorId=${userId}`;
+          } else if (data.role === 'user') {
+            fetchUrl = `http://localhost:9999/booking?patientId=${userId}`;
+          }
+    
+          fetch(fetchUrl)
             .then((response) => response.json())
             .then((bookingData) => {
               setBookingInfo(bookingData);
@@ -178,7 +184,11 @@ export default function BookingHistory() {
               <thead>
                 <tr className="bg-[#109AE5] text-white font-bold">
                   <th className="px-4 py-2 border">Created Date</th>
-                  <th className="px-4 py-2 border">{location.pathname === '/doctor-profile' ? "Patient Name" : "Doctor Name"}</th>
+                  <th className="px-4 py-2 border">
+                    {location.pathname === "/doctor-profile"
+                      ? "Patient Name"
+                      : "Doctor Name"}
+                  </th>
                   <th className="px-4 py-2 border">Time</th>
                   <th className="px-4 py-2 border">Date</th>
                   <th className="px-4 py-2 border">Describe</th>
@@ -196,7 +206,11 @@ export default function BookingHistory() {
                       </td>
                       <td className="px-4 py-2 border">
                         <div className="w-full h-full flex items-center justify-center">
-                          <p>{booking.doctorFullName}</p>
+                          <p>
+                            {location.pathname === "/doctor-profile"
+                              ? booking.patientFullName
+                              : booking.doctorFullName}
+                          </p>
                         </div>
                       </td>
                       <td className="px-4 py-2 border">
