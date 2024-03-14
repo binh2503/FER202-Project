@@ -15,7 +15,17 @@ export default function Header() {
                     </div>
                 </div>
                 <div className="h-full flex items-center">
-                    {location.pathname === '/homepage/user'  || location.pathname === '/specialist'  && (
+                    {location.pathname === '/homepage/user' && (
+                        <div className="gap-[50px] flex">
+                            <a className="text-[18px] font-mono font-bold" href="#">Home</a>
+                            <a className="text-[18px] font-mono font-bold" href="#">About</a>
+                            <a className="text-[18px] font-mono font-bold" href="/specialist">Specialist</a>
+                            <a className="text-[18px] font-mono font-bold" href="/doctor-list">Doctors</a>
+                            <a className="text-[18px] font-mono font-bold" href="#">Contact</a>
+                            <a className="text-[18px] font-mono font-bold" href="/booking">Booking</a>
+                        </div>
+                    )}
+                    {location.pathname === '/specialist' && (
                         <div className="gap-[50px] flex">
                             <a className="text-[18px] font-mono font-bold" href="#">Home</a>
                             <a className="text-[18px] font-mono font-bold" href="#">About</a>
@@ -53,7 +63,7 @@ export default function Header() {
                             </div>
                         </div>
                     )}
-                    {location.pathname === '/homepage/user' || location.pathname === '/specialist'  && (
+                    {location.pathname === '/homepage/user' && (
                         <a href="/user-profile">
                             <button className="h-[40px] w-[40px] bg-[#0872BB] flex justify-center items-center text-white font-mono font-bold rounded-[30px]"><UilUser /></button>
                         </a>
