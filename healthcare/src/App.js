@@ -9,6 +9,7 @@ import UpdateProfile from "./components/UpdateProfile";
 import UserInformation from "./components/UserInformation";
 import Booking from "./components/Booking";
 import DoctorList from "./components/DoctorList";
+import Specify from "./components/Specify";
 function App() {
   return (
     // <div className="w-screen h-screen">
@@ -31,6 +32,7 @@ function App() {
           <Route path='/doctor-profile' element={<UserInformation />} > </Route>
           <Route path='/booking' element={<Booking />} > </Route>
           <Route path='/doctor-list' element={<DoctorList />} > </Route>
+          <Route path='/specialist' element={<Specify />} > </Route>
         </Routes>
 
       </BrowserRouter>

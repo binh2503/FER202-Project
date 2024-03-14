@@ -89,23 +89,28 @@
   "pathological": [
     {
       "id": "1",
-      "name": "Obstetric"
+      "name": "Obstetric",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_ivf.png"
     },
     {
       "id": "2",
-      "name": "Heart"
+      "name": "Heart",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noitimmach.png"
     },
     {
       "id": "3",
-      "name": "Pediatrics"
+      "name": "Pediatrics",
+      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_sosinh.png"
     },
     {
       "id": "4",
-      "name": "General health"
+      "name": "General health",
+      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noitiet.png"
     },
     {
       "id": "5",
-      "name": "Digest"
+      "name": "Digest",
+      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/11/icon-tieuhoa.png"
     }
   ],
   "booking": [
@@ -159,6 +164,19 @@
       "currentDate": "2024-03-12",
       "doctorFullName": "Hiram Hicks",
       "isRated": true
+    },
+    {
+      "doctorId": "4d69",
+      "patientId": "kt0zWa6",
+      "time": "10:16",
+      "date": "2024-03-08",
+      "symptoms": "ádasd",
+      "healthProblem": "Obstetric",
+      "status": false,
+      "currentDate": "2024-03-12",
+      "doctorFullName": "Hiram bigboy",
+      "isRated": true,
+      "id": "7EES59W"
     }
   ],
   "rating": [
@@ -181,9 +199,9 @@
     {
       "patientId": "kt0zWa6",
       "doctorId": "4d69",
-      "rating": 14,
-      "ratingCount": 2,
-      "bookingId": "d9b5",
+      "rating": 24,
+      "ratingCount": 3,
+      "bookingId": "7EES59W",
       "id": "7921"
     }
   ],
