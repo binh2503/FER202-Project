@@ -98,7 +98,7 @@ export default function DoctorList() {
               Doctor List
             </h2>
             <div className="flex">
-              <a href="/homepage">
+              <a href="/homepage/user">
                 <button className="bg-[#109AE5] text-white  rounded-md p-1 font-bold font-mono flex">
                   Back to home
                   <UilArrowRight size={20} />
