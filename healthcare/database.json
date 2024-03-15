@@ -89,28 +89,63 @@
   "pathological": [
     {
       "id": "1",
-      "name": "Obstetric",
-      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_ivf.png"
+      "name": "Eyes",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2024/02/trung-tam-mat-cong-nghe-cao.png"
     },
     {
       "id": "2",
+      "name": "Dentomaxillofacial",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2023/12/khoa-rang-ham-mat.png"
+    },
+    {
+      "id": "3",
+      "name": "Reproduction",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_ivf.png"
+    },
+    {
+      "id": "4",
+      "name": "Breast surgery department",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2022/12/icon-khoa-ngoai-vu-2023.png"
+    },
+    {
+      "id": "5",
+      "name": "Endoscopy and endoscopic digestive surgery",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/11/icon-tieuhoa.png"
+    },
+    {
+      "id": "6",
+      "name": "Department of gastroenterology - liver - gallbladder - pancreas",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2022/02/logo-tieu-hoa-gan-mat-f.png"
+    },
+    {
+      "id": "7",
       "name": "Heart",
       "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noitimmach.png"
     },
     {
-      "id": "3",
-      "name": "Pediatrics",
-      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_sosinh.png"
+      "id": "8",
+      "name": "Neuroscience",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noithankinh.png"
     },
     {
-      "id": "4",
-      "name": "General health",
-      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noitiet.png"
+      "id": "9",
+      "name": "Department of endocrinology - diabetes",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_noitiet.png"
     },
     {
-      "id": "5",
-      "name": "Digest",
-      "src":"https://tamanhhospital.vn/wp-content/uploads/2020/11/icon-tieuhoa.png"
+      "id": "10",
+      "name": "Musculoskeletal Department",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2021/03/khoa-noi-co-xuong-khop.png"
+    },
+    {
+      "id": "11",
+      "name": "Ear, nose and throat",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2021/03/khoa-tai-mui-hong.png"
+    },
+    {
+      "id": "12",
+      "name": "Orthopedic",
+      "src": "https://tamanhhospital.vn/wp-content/uploads/2020/12/khoa_cthuong_chinhhinh.png"
     }
   ],
   "booking": [
@@ -148,9 +183,10 @@
       "date": "2024-03-08",
       "symptoms": "123",
       "healthProblem": "Heart",
-      "status": true,
+      "status": false,
       "currentDate": "2024-03-05",
-      "doctorFullName": "Hiram Hicks"
+      "doctorFullName": "Hiram Hicks",
+      "isRated": true
     },
     {
       "id": "a69f",
@@ -177,6 +213,20 @@
       "doctorFullName": "Hiram bigboy",
       "isRated": true,
       "id": "7EES59W"
+    },
+    {
+      "id": "ad60",
+      "doctorId": "4d69",
+      "patientId": "kt0zWa6",
+      "time": "22:49",
+      "date": "2024-03-16",
+      "symptoms": "124124",
+      "healthProblem": "Endoscopy and endoscopic digestive surgery",
+      "status": false,
+      "currentDate": "2024-03-14",
+      "doctorFullName": "Hiram bigboy",
+      "patientFullName": "Ronaldo",
+      "isRated": true
     }
   ],
   "rating": [
@@ -189,23 +239,37 @@
       "bookingId": "181e"
     },
     {
-      "patientId": "kt0zWa6",
+      "patientId": "4606",
       "doctorId": "4606",
-      "rating": 18,
-      "ratingCount": 2,
-      "bookingId": "a69f",
+      "rating": 24,
+      "ratingCount": 3,
+      "bookingId": "83c7",
       "id": "f685"
     },
     {
       "patientId": "kt0zWa6",
       "doctorId": "4d69",
-      "rating": 24,
-      "ratingCount": 3,
-      "bookingId": "7EES59W",
+      "rating": 30,
+      "ratingCount": 4,
+      "bookingId": "ad60",
       "id": "7921"
     }
   ],
-  "medical": [],
+  "medical": [
+    {
+      "id": "15f1",
+      "medicineName": "1 nồi đá",
+      "startDate": "2024-03-06",
+      "endDate": "2024-03-31",
+      "usage": "152512512",
+      "notification1": "22:51",
+      "notification2": "22:52",
+      "prescriber": "Hiram bigboy",
+      "patientId": "kt0zWa6",
+      "patientFullName": "Ronaldo",
+      "doctorId": "4d69"
+    }
+  ],
   "DiseasesHistory": [
     {
       "id": "9118",
