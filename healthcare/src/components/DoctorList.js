@@ -5,7 +5,6 @@ export default function DoctorList() {
   const [doctors, setDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const searchRef = useRef();
@@ -49,45 +48,18 @@ export default function DoctorList() {
   }, []);
 
   useEffect(() => {
-    const results = doctors.filter(doctor =>
-      doctor.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.specify.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setSearchResults(results);
-
-    const suggest = doctors.filter(doctor =>
-      doctor.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
-      doctor.specify.toLowerCase().startsWith(searchTerm.toLowerCase())
-    );
-    setSuggestions(suggest);
+    if (doctors.length > 0) {
+      const results = doctors.filter(doctor =>
+        (doctor.fullName && doctor.fullName.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (doctor.specify && doctor.specify.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+      setSearchResults(results);
+    }
   }, [searchTerm, doctors]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setShowSuggestions(true);
   };
-
-  const handleSearch = () => {
-    // You can perform any additional actions here if needed
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion.fullName);
-    setShowSuggestions(false);
-  };
-
-  const handleClickOutside = (event) => {
-    if (searchRef.current && !searchRef.current.contains(event.target)) {
-      setShowSuggestions(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   return (
     <div className="w-screen h-auto flex justify-center items-center mt-[10px]">
@@ -117,18 +89,9 @@ export default function DoctorList() {
                 onChange={handleSearchChange}
                 onClick={() => setShowSuggestions(true)}
               />
-              <button className="border-2 border-solid border-[#109AE5] w-[100px] bg-[#109AE5] flex justify-center items-center rounded-r-[30px]" onClick={handleSearch}>
+              <button className="border-2 border-solid border-[#109AE5] w-[100px] bg-[#109AE5] flex justify-center items-center rounded-r-[30px]">
                 <UilSearch color={"white"} />
-              </button>
-              {/* {showSuggestions && suggestions.length > 0 && (
-                <ul className="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-b-md shadow-md z-10">
-                  {suggestions.map(doctor => (
-                    <li key={doctor.id} className="px-4 py-2 cursor-pointer hover:bg-gray-100" onClick={() => handleSuggestionClick(doctor)}>
-                      {doctor.fullName} - {doctor.specify}
-                    </li>
-                  ))}
-                </ul>
-              )} */}
+              </button>           
             </div>
           </div>
           <div className="w-full">
