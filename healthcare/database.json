@@ -40,13 +40,20 @@
       "dateOfBirth": "2024-02-28",
       "phone": "0999999999",
       "address": "Ha Noi"
+    },
+    {
+      "id": "2c75",
+      "email": "test2@gmail.com",
+      "password": "123456yyy",
+      "role": "doctor",
+      "fullName": "Bac si 2",
+      "dateOfBirth": "2024-03-23",
+      "phone": "0966768150",
+      "address": "HaNoi, Vietnam",
+      "specify": "Orthopedic"
     }
   ],
   "doctorCode": [
-    {
-      "id": "4",
-      "code": "DGB123"
-    },
     {
       "id": "5",
       "code": "123"
