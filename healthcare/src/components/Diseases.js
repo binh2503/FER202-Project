@@ -4,6 +4,7 @@ export default function Diseases() {
   const [showPopup, setShowPopup] = useState(false);
   const [medicineList, setMedicineList] = useState([]);
   const [diseasesHistory, setDiseasesHistory] = useState([]);
+  const [filteredDiseasesHistory, setFilteredDiseasesHistory] = useState([]);
   const [formData, setFormData] = useState({
     medicineName: "",
     startDate: "",
@@ -11,21 +12,63 @@ export default function Diseases() {
     status: "",
     patientId: localStorage.getItem("userId"),
   });
-
+  const [currentUserRole, setCurrentUserRole] = useState(null);
+  const currentUserId = localStorage.getItem("userId");
   useEffect(() => {
     fetch("http://localhost:9999/pathological")
       .then((response) => response.json())
-      .then((data) => setMedicineList(data));
-
-    fetch("http://localhost:9999/DiseasesHistory")
-      .then((response) => response.json())
-      .then((data) => {
-        const patientHistory = data.filter(
-          (item) => item.patientId === formData.patientId
-        );
-        setDiseasesHistory(patientHistory);
+      .then((data) => setMedicineList(data))
+      .then(() => {
+        fetch(`http://localhost:9999/infor?id=${currentUserId}`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.length > 0) {
+              setCurrentUserRole(data[0].role);
+            }
+          })
+          .catch((error) => console.error("Error fetching user data:", error));
       });
   }, [formData.patientId]);
+
+  useEffect(() => {
+    if (currentUserRole !== null) {
+      fetchDiseasesHistory(currentUserId);
+    }
+  }, [currentUserRole, currentUserId]);
+
+  const fetchDiseasesHistory = (currentUserId) => {
+    if (currentUserRole === "doctor") {
+      fetch("http://localhost:9999/DiseasesHistory")
+        .then((response) => response.json())
+        .then((data) => {
+          Promise.all(
+            data.map((item) => {
+              return fetch(`http://localhost:9999/infor?id=${item.patientId}`)
+                .then((response) => response.json())
+                .then((patientData) => {
+                  item.patientName = patientData[0].fullName;
+                  return item;
+                });
+            })
+          ).then((updatedData) => {
+            setDiseasesHistory(updatedData);
+            setFilteredDiseasesHistory(updatedData);
+          });
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    } else {
+      fetch("http://localhost:9999/DiseasesHistory")
+        .then((response) => response.json())
+        .then((data) => {
+          const patientHistory = data.filter(
+            (item) => item.patientId === currentUserId
+          );
+          setDiseasesHistory(patientHistory);
+          setFilteredDiseasesHistory(patientHistory);
+        })
+        .catch((error) => console.error("Error fetching data:", error));
+    }
+  };
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -56,10 +99,20 @@ export default function Diseases() {
       .then((data) => {
         console.log("Data saved successfully:", data);
         setShowPopup(false);
+        fetchDiseasesHistory(formData.patientId);
       })
       .catch((error) => {
         console.error("Error saving data:", error);
       });
+  };
+
+  const handleSearch = (searchQuery) => {
+    const filteredData = diseasesHistory.filter(
+      (item) =>
+        item.medicineName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.patientName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredDiseasesHistory(filteredData);
   };
 
   return (
@@ -69,6 +122,12 @@ export default function Diseases() {
           <p className="font-mono text-[30px] text-center font-extrabold mb-[20px]">
             Diseases History
           </p>
+          <input
+            type="text"
+            placeholder="Search by disease name or patient name..."
+            onChange={(e) => handleSearch(e.target.value)}
+            className="w-full border rounded px-4 py-2 mb-4"
+          />
           <div className="w-full">
             <button
               className="bg-[#109AE5] p-[10px] rounded-[20px] text-white font-mono"
@@ -178,34 +237,26 @@ export default function Diseases() {
                   <th className="px-4 py-2 border">Start Date</th>
                   <th className="px-4 py-2 border">Describe</th>
                   <th className="px-4 py-2 border">Status</th>
+                  {currentUserRole === "doctor" && (
+                    <th className="px-4 py-2 border">Patient Name</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
-                {diseasesHistory.map((disease, index) => (
+                {filteredDiseasesHistory.map((disease, index) => (
                   <tr
                     key={index}
                     className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
                   >
-                    <td className="px-4 py-2 border">
-                      <div className="w-full h-full flex items-center justify-center">
-                        <p>{disease.medicineName}</p>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2 border">
-                      <div className="w-full h-full flex items-center justify-center">
-                        <p>{disease.startDate}</p>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2 border max-w-[200px]">
-                      <div className="w-full h-full flex items-center justify-center ">
-                        <p>{disease.describe}</p>
-                      </div>
-                    </td>
-                    <td className="px-4 py-2 border">
-                      <div className="w-full h-full flex items-center justify-center">
-                        <p>{disease.status}</p>
-                      </div>
-                    </td>
+                    <td className="px-4 py-2 border">{disease.medicineName}</td>
+                    <td className="px-4 py-2 border">{disease.startDate}</td>
+                    <td className="px-4 py-2 border">{disease.describe}</td>
+                    <td className="px-4 py-2 border">{disease.status}</td>
+                    {currentUserRole === "doctor" && (
+                      <td className="px-4 py-2 border">
+                        {disease.patientName}
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
