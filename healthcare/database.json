@@ -1,67 +1,51 @@
 {
   "infor": [
     {
-      "id": "6d0e",
-      "email": "binhdo11111@gmail.com",
-      "password": "1234456yy",
-      "role": "doctor",
-      "fullName": "Do Gia Binh",
-      "dateOfBirth": "2024-03-14",
-      "phone": "7863047694",
-      "address": "Thai Binh"
-    },
-    {
-      "id": "4d69",
-      "email": "binhgg@gmail.com",
-      "password": "123456yyyy",
-      "role": "doctor",
-      "fullName": "Hiram bigboy",
-      "dateOfBirth": "",
-      "phone": "7863047694",
-      "address": "Fugit numquam ducimus consectetur aliquam ipsam et vitae enim quisquam Nam mollitia itaque iure"
-    },
-    {
-      "id": "4606",
-      "email": "bacsibinh@gmail.com",
-      "password": "123456yyyy",
-      "role": "doctor",
-      "fullName": "Hiram Hicks",
-      "dateOfBirth": "2024-03-21",
-      "phone": "0123456789",
-      "address": "fuit",
-      "doctorCode": "DGB123"
-    },
-    {
-      "id": "kt0zWa6",
-      "email": "test1@gmail.com",
+      "id": "075b",
+      "email": "user1@gmail.com",
       "password": "123456yy",
       "role": "user",
-      "fullName": "Ronaldo",
-      "dateOfBirth": "2024-02-28",
-      "phone": "0999999999",
-      "address": "Ha Noi"
+      "fullName": "User 1",
+      "dateOfBirth": "2024-03-22",
+      "phone": "0123456789",
+      "address": "Ha noi",
+      "specify": ""
     },
     {
-      "id": "2c75",
-      "email": "test2@gmail.com",
-      "password": "123456yyy",
+      "id": "9e63",
+      "email": "user2@gmail.com",
+      "password": "123456yy",
+      "role": "user",
+      "fullName": "User 2",
+      "dateOfBirth": "2222-02-22",
+      "phone": "0123456789",
+      "address": "Ha noi",
+      "specify": ""
+    },
+    {
+      "id": "ce4d",
+      "email": "doctor1@gmail.com",
+      "password": "123456yy",
       "role": "doctor",
-      "fullName": "Bac si 2",
-      "dateOfBirth": "2024-03-23",
-      "phone": "0966768150",
-      "address": "HaNoi, Vietnam",
-      "specify": "Orthopedic"
+      "fullName": "Doctor 1",
+      "dateOfBirth": "2024-03-09",
+      "phone": "0123456789",
+      "address": "Ha noi",
+      "specify": "Reproduction"
+    },
+    {
+      "id": "4111",
+      "email": "doctor2@gmail.com",
+      "password": "123456yy",
+      "role": "doctor",
+      "fullName": "Doctor 2",
+      "dateOfBirth": "2024-03-22",
+      "phone": "0123456789",
+      "address": "Ha noi",
+      "specify": "Heart"
     }
   ],
   "doctorCode": [
-    {
-      "id": "5",
-      "code": "123"
-    },
-    {
-      "id": "6",
-      "code": "1234"
-    },
     {
       "id": "7",
       "code": "1235"
@@ -157,147 +141,166 @@
   ],
   "booking": [
     {
-      "id": "181e",
-      "doctorId": "6d0e",
-      "patientId": "kt0zWa6",
-      "time": "21:48",
-      "date": "2024-03-01",
-      "symptoms": "aaaa",
-      "healthProblem": "Heart",
+      "id": "2317",
+      "doctorId": "ce4d",
+      "patientId": "075b",
+      "time": "22:58",
+      "date": "2024-03-09",
+      "symptoms": "testtt 1",
+      "healthProblem": "Reproduction",
       "status": false,
-      "currentDate": "2024-03-05",
-      "doctorFullName": "Do Gia Binh",
+      "currentDate": "2024-03-19",
+      "doctorFullName": "Doctor 1",
+      "patientFullName": "User 1",
       "isRated": true
     },
     {
-      "id": "c6cf",
-      "doctorId": "4606",
-      "patientId": "kt0zWa6",
-      "time": "21:52",
-      "date": "2024-03-08",
-      "symptoms": "123124124",
-      "healthProblem": "Pediatrics",
+      "id": "0915",
+      "doctorId": "4111",
+      "patientId": "075b",
+      "time": "22:59",
+      "date": "2024-03-22",
+      "symptoms": "551",
+      "healthProblem": "Orthopedic",
       "status": false,
-      "currentDate": "2024-03-05",
-      "doctorFullName": "Hiram Hicks",
+      "currentDate": "2024-03-19",
+      "doctorFullName": "Doctor 2",
+      "patientFullName": "User 1",
       "isRated": true
     },
     {
-      "id": "83c7",
-      "doctorId": "4606",
-      "patientId": "4606",
-      "time": "10:18",
-      "date": "2024-03-08",
-      "symptoms": "123",
-      "healthProblem": "Heart",
+      "id": "635c",
+      "doctorId": "ce4d",
+      "patientId": "9e63",
+      "time": "23:59",
+      "date": "2024-03-09",
+      "symptoms": "niceeee",
+      "healthProblem": "Breast surgery department",
       "status": false,
-      "currentDate": "2024-03-05",
-      "doctorFullName": "Hiram Hicks",
+      "currentDate": "2024-03-19",
+      "doctorFullName": "Doctor 1",
+      "patientFullName": "User 2",
       "isRated": true
     },
     {
-      "id": "a69f",
-      "doctorId": "4606",
-      "patientId": "kt0zWa6",
-      "time": "20:28",
-      "date": "2024-03-16",
-      "symptoms": "455",
-      "healthProblem": "Digest",
+      "id": "80ef",
+      "doctorId": "4111",
+      "patientId": "9e63",
+      "time": "22:00",
+      "date": "2024-03-10",
+      "symptoms": "smoking area - FPT Hoa Lac",
+      "healthProblem": "Ear, nose and throat",
       "status": false,
-      "currentDate": "2024-03-12",
-      "doctorFullName": "Hiram Hicks",
-      "isRated": true
-    },
-    {
-      "doctorId": "4d69",
-      "patientId": "kt0zWa6",
-      "time": "10:16",
-      "date": "2024-03-08",
-      "symptoms": "ádasd",
-      "healthProblem": "Obstetric",
-      "status": false,
-      "currentDate": "2024-03-12",
-      "doctorFullName": "Hiram bigboy",
-      "isRated": true,
-      "id": "7EES59W"
-    },
-    {
-      "id": "ad60",
-      "doctorId": "4d69",
-      "patientId": "kt0zWa6",
-      "time": "22:49",
-      "date": "2024-03-16",
-      "symptoms": "124124",
-      "healthProblem": "Endoscopy and endoscopic digestive surgery",
-      "status": false,
-      "currentDate": "2024-03-14",
-      "doctorFullName": "Hiram bigboy",
-      "patientFullName": "Ronaldo",
+      "currentDate": "2024-03-19",
+      "doctorFullName": "Doctor 2",
+      "patientFullName": "User 2",
       "isRated": true
     }
   ],
   "rating": [
     {
-      "id": "3ef6",
-      "patientId": "kt0zWa6",
-      "doctorId": "6d0e",
-      "rating": 10,
-      "ratingCount": 1,
-      "bookingId": "181e"
+      "patientId": "9e63",
+      "doctorId": "ce4d",
+      "rating": 14,
+      "ratingCount": 2,
+      "bookingId": "635c",
+      "id": "d2b5"
     },
     {
-      "patientId": "4606",
-      "doctorId": "4606",
-      "rating": 24,
-      "ratingCount": 3,
-      "bookingId": "83c7",
-      "id": "f685"
-    },
-    {
-      "patientId": "kt0zWa6",
-      "doctorId": "4d69",
-      "rating": 30,
-      "ratingCount": 4,
-      "bookingId": "ad60",
-      "id": "7921"
+      "patientId": "9e63",
+      "doctorId": "4111",
+      "rating": 14,
+      "ratingCount": 2,
+      "bookingId": "80ef",
+      "id": "8dfd"
     }
   ],
   "medical": [
     {
-      "id": "15f1",
-      "medicineName": "1 nồi đá",
-      "startDate": "2024-03-06",
-      "endDate": "2024-03-31",
-      "usage": "Bạn đang thất tình? bạn hết tiền? ... hãy bú ngay cho mình 1 viên thuốc đầu lâu. Thuốc đầu lâu - đánh bay mọi mệt mỏi",
-      "notification1": "22:51",
-      "notification2": "16:58",
-      "prescriber": "Hiram bigboy",
-      "patientId": "kt0zWa6",
-      "patientFullName": "Ronaldo",
-      "doctorId": "4d69"
+      "id": "5a2a",
+      "medicineName": "1 tình yêu chân thành không lừa dối",
+      "startDate": "2024-03-01",
+      "endDate": "2024-03-09",
+      "usage": "test 1",
+      "notification1": "23:08",
+      "notification2": "23:13",
+      "prescriber": "Doctor 1",
+      "patientId": "075b",
+      "patientFullName": "User 1",
+      "doctorId": "ce4d"
     },
     {
-      "id": "a34c",
-      "medicineName": "Thuốc đầu lâu",
+      "id": "6200",
+      "medicineName": "Thuốc trường sinh",
+      "startDate": "2024-03-16",
+      "endDate": "2024-04-21",
+      "usage": "Uống sau ăn cơm 30p. Sáng 1 lần, tối 1 lần. sau 7749 ngày sẽ giác ngộ, trở thành cường giả đứng đầu của đại lục",
+      "notification1": "23:10",
+      "notification2": "23:11",
+      "prescriber": "Doctor 1",
+      "patientId": "9e63",
+      "patientFullName": "User 2",
+      "doctorId": "ce4d"
+    },
+    {
+      "id": "c022",
+      "medicineName": "Rượu thuốc gia truyền",
       "startDate": "2024-03-15",
-      "endDate": "2024-03-16",
-      "usage": "Sau khi uống phải lên bar hoặc club để thuốc có thể phát huy tối đa tác dụng, công lực vô biên - chiến mãi không mệt",
-      "notification1": "15:36",
-      "notification2": "21:38",
-      "prescriber": "Hiram bigboy",
-      "patientId": "kt0zWa6",
-      "patientFullName": "Ronaldo",
-      "doctorId": "4d69"
+      "endDate": "2024-03-30",
+      "usage": "Chống chỉ định cho trẻ em và người chưa đủ 18 tuổi. Dùng để thoa lên vết bầm, dập chứ không dùng để giải khát.",
+      "notification1": "12:08",
+      "notification2": "17:14",
+      "prescriber": "Doctor 2",
+      "patientId": "075b",
+      "patientFullName": "User 1",
+      "doctorId": "4111"
+    },
+    {
+      "id": "445c",
+      "medicineName": "Paracetamol",
+      "startDate": "2024-03-09",
+      "endDate": "2024-03-30",
+      "usage": "Thuốc trị bách bệnh, uống sau ăn. Ngày 2 lần",
+      "notification1": "00:09",
+      "notification2": "23:11",
+      "prescriber": "Doctor 2",
+      "patientId": "9e63",
+      "patientFullName": "User 2",
+      "doctorId": "4111"
     }
   ],
   "DiseasesHistory": [
     {
-      "id": "9118",
-      "medicineName": "dau tym ",
-      "startDate": "2024-03-16",
-      "describe": "44444",
+      "id": "e048",
+      "medicineName": "heart damage",
+      "startDate": "2024-03-19",
+      "describe": "broken up",
       "status": "Chronic",
-      "patientId": "kt0zWa6"
+      "patientId": "075b"
+    },
+    {
+      "id": "1b40",
+      "medicineName": "footsore",
+      "startDate": "2024-03-20",
+      "describe": "injury caused by soccer",
+      "status": "Cured",
+      "patientId": "075b"
+    },
+    {
+      "id": "1510",
+      "medicineName": "lack of love",
+      "startDate": "2024-03-15",
+      "describe": "find lover",
+      "status": "Cured",
+      "patientId": "9e63"
+    },
+    {
+      "id": "3a72",
+      "medicineName": "headache",
+      "startDate": "2024-03-29",
+      "describe": "ăn que kem 200k ở hồ gươm xong bị ung thư ví",
+      "status": "Being treated",
+      "patientId": "9e63"
     }
   ]
 }

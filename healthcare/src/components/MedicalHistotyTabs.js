@@ -37,22 +37,18 @@ export default function MedicalHistoryTabs() {
           >
             Medical
           </Tab>
-          {location.pathname === "/user-profile" && (
-            <>
-              <Tab
-                className={({ selected }) =>
-                  classNames(
-                    "bg-[#109AE5] rounded-[30px] py-[10px] px-[30px]",
-                    selected
-                      ? "bg-white text-[#109AE5] shadow"
-                      : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
-                  )
-                }
-              >
-                Diseases
-              </Tab>
-            </>
-          )}
+          <Tab
+            className={({ selected }) =>
+              classNames(
+                "bg-[#109AE5] rounded-[30px] py-[10px] px-[30px]",
+                selected
+                  ? "bg-white text-[#109AE5] shadow"
+                  : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
+              )
+            }
+          >
+            Diseases
+          </Tab>
         </Tab.List>
         <Tab.Panels>
           <Tab.Panel>
